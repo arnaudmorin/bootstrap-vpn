@@ -11,7 +11,7 @@ echo "Creating server vpn-$$"
 openstack server create \
     --nic net-id=Ext-Net \
     --image 'Debian 9' \
-    --flavor c2-7 \
+    --flavor s1-2 \
     --user-data /tmp/userdata__$$ \
     vpn-$$
 
