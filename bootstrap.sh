@@ -18,7 +18,7 @@ openstack server create \
 # Wait for VM to be ACTIVE
 echo -n "Waiting for IP "
 while [ 1 ] ; do
-    IP=$(openstack server show vpn-$$ -f shell -c addresses | sed -nr 's/.+Ext-Net=(.+),.+/\1/p')
+    IP=$(openstack server show vpn-$$ -f shell -c addresses | perl -pe 's/.+Ext-Net=.*?([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/' | grep -v addresses)
     echo -n '.'
     [ ! -z "$IP" ] && break
 done
